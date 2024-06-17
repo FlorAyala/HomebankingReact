@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2'
 
 const ApplyLoans = () => {
   const token = useSelector((store) => store.authReducer.token);
@@ -43,9 +44,10 @@ const ApplyLoans = () => {
       setClientAccounts(response.data);
       console.log(response.data);
     } catch (error) {
-      console.log(error);
+      handleError(error);
     }
   };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,8 +67,15 @@ const ApplyLoans = () => {
         },
       });
       console.log(response.data);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Successful loan application!",
+        showConfirmButton: false,
+        timer: 1500
+      });
     } catch (error) {
-      console.log(error);
+      handleError(error);
     }
   };
 
@@ -99,10 +108,25 @@ const ApplyLoans = () => {
     }
   }, [selectedLoanName, loan]);
 
+  const handleError = (error) => {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `Error: ${error.response.data}. Status: ${error.response.status}`,
+        });
+      }
+    } else {
+      // Algo pasó fuera de Axios
+      alert(`Error: ${error}`);
+    }
+  };
+
   return (
     <main className='w-full p-5 lg:pl-[15rem] md:ml-[12rem] flex flex-col justify-evenly h-screen items-center'>
       <h2 className='text-[#d0ad50] text-5xl'>Apply for a loan</h2>
-      <section className='flex flex-row lg:mt-16 items-center lg:w-[57.666667%] md:w-[70%]  bg-transparent'>
+      <section className='flex flex-row lg:mt-16 items-center lg:w-[67.666667%] md:w-[70%]  bg-transparent'>
         <form onSubmit={handleSubmit} className='flex flex-col gap-4 w-[350px] p-5 bg-[#3a35357a] border-r-[1px_solid_#d3ad45] rounded-l-xl shadow-[3px_5px_42px_0px_#234e52]'>
           <div className='flex flex-row'>
             <fieldset>

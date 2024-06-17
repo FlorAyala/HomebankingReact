@@ -3,6 +3,7 @@ import CheckTransfer from '../components/CheckTransfer';
 import ButtonsForms from '../components/ButtonsForms';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+import Swal from 'sweetalert2'
 
 
 const Transaction = () => {
@@ -12,7 +13,7 @@ const Transaction = () => {
   const [description, setDescription] = useState('');
   const [selectedSourceAccount, setSelectedSourceAccount] = useState('');
   const [destinationAccount, setDestinationAccount] = useState('');// 'own' or 'thirdParty
-  const [showAlert, setShowAlert] = useState(false);
+
 
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const Transaction = () => {
       setClientAccounts(response.data);
       console.log(response.data);
     } catch (error) {
-      console.log(error);
+      handleError(error);
     }
   };
 
@@ -52,28 +53,41 @@ const Transaction = () => {
         },
       });
 
-      console.log('Transaction created:', response.data);
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 2000);
+      
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Transaction created successfully!",
+        showConfirmButton: false,
+        timer: 1500
+      });
   
 
     } catch (error) {
 
-      console.error('Error creating transaction:', error);
-
-      if (error.response && error.response.status === 403) {
-        alert('You do not have permission to perform this action.');
-      }
+      handleError(error);
     }
   }
+  const handleError = (error) => {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `Error: ${error.response.data}. Status: ${error.response.status}`,
+        });
+      }
+    } else {
+      // Algo pasó fuera de Axios
+      alert(`Error: ${error}`);
+    }
+  };
  
 
   return (
     <main className='w-full p-5 lg:pl-[15rem] flex flex-col justify-evenly h-screen  items-center'>
       <h2 className='text-[#d0ad50] text-3xl lg:text-5xl '>Make a transaction</h2>
-      { showAlert && <div className='bg-green-500 text-white p-2 rounded-lg mb-4'>Transaction successful</div> }
+     
       <div className='flex flex-col md:flex-row lg:flex-row justify-between items-center rounded-xl py-5 '>
         <div>
           <div className='flex flex-col items-center justify-center dark'>

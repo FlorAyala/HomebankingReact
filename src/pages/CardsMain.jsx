@@ -19,6 +19,9 @@ const CardsMain = () => {
         }
       })
       setCards(response.data);
+      console.log(response.data);
+      
+      
     } catch (error) {
       console.log(error);
     }
@@ -28,20 +31,21 @@ const CardsMain = () => {
     getData();
   }, [token])
 
-  useEffect(() => {
-   
-    switch(color){
-      case 'SILVER':
-        setColor(' bg-gradient-to-tr from-slate-600 to-slate-400 ')
+
+  const getBackgroundColor = (color) => {
+    switch (color) {
+      case "SILVER":
+        return "bg-gradient-to-br from-[#8f8d87] to-[#c0beba]";
+      break;
+      case "GOLD":
+        return "bg-gradient-to-br from-[#f5e3b3] to-[#af954c]";
         break;
-      case 'GOLD':
-        setColor(' bg-gradient-to-tr from-yellow-700 to-yellow-400 ')
+      case "TITANIUM":
+        return "bg-gradient-to-br from-[#8f8d87] to-[#535047]";
         break;
-      case 'TITATIUM':
-        setColor(' bg-gradient-to-tr from-black to-gray-800 bg-gradient-to-tr')
-        break;
+      
     }
-  }, [cards])
+  };
 
   const handleCardClick = (index) => {
     const newFlippedCards = [...flippedCards];
@@ -63,18 +67,19 @@ const CardsMain = () => {
       <div className='flex flex-col lg:h-[207px] lg:flex-row flex-wrap gap-2 justify-center lg:pl-20 h-full overflow-y-auto'>
         {cards.map((card, index) => (
           <div key={index} className="m-2" onClick={() => handleCardClick(index)}>
-            <div className={`relative w-64 h-40 transform transition-transform ${color} duration-700 ${flippedCards[index] ? 'rotate-y-180' : ''}`}>
+            <div className={`relative w-64 h-40 transform rounded-lg transition-transform ${getBackgroundColor(card.color)} duration-700 ${flippedCards[index] ? 'rotate-y-180' : ''}`}>
               <div
-                className={`absolute inset-0 flex items-center ${color} justify-center text-white ${flippedCards[index] ? 'rotate-y-180' : ''}`}
+                className={`absolute inset-0 flex items-center  justify-center text-white ${flippedCards[index] ? 'rotate-y-180' : ''}`}
                 style={{ backfaceVisibility: 'hidden', transform: flippedCards[index] ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
               >
-                <CardsCreditDebit name={card.cardHolder} number={card.number} date={card.thruDate} type={card.cardType} color={color}/>
+                <CardsCreditDebit visibilityImg={true} visibilityImgBack={false} name={card.cardHolder} number={card.number} date={card.thruDate} type={card.cardType} />
               </div>
               <div
                 className={`absolute inset-0 flex items-center justify-center   text-white ${flippedCards[index] ? '' : 'rotate-y-180'}`}
                 style={{ backfaceVisibility: 'hidden', transform: flippedCards[index] ? 'rotateY(0deg)' : 'rotateY(-180deg)' }}
               >
-                <CardsCreditDebit type="CVV" date={card.cvv} />
+
+                <CardsCreditDebit visibilityImg={false} visibilityImgBack={true} cvv="CVV" numbercvv={card.cvv} />
               </div>
             </div>
           </div>

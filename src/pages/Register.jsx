@@ -5,14 +5,15 @@ import axios from 'axios';
 import InputsForm from '../components/InputsForm';
 import ButtonsForms from '../components/ButtonsForms';
 import ButtonHome from '../components/ButtonHome';
+import Swal from 'sweetalert2'
 
 const Register = () => {
-    const token = useSelector((store) => store.authReducer.token);
+
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [alertMessage, setAlertMessage] = useState('');
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -26,34 +27,41 @@ const Register = () => {
 
         try {
             let response = await axios.post('http://localhost:8080/api/auth/signup', user );
-            let token = response.data
+         
             console.log(response.data);
-            const responseCurrent = await axios.get('http://localhost:8080/api/auth/current', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
 
-            console.log(responseCurrent.data);
-            setAlertMessage('Registration successful');
-            setTimeout(() => {
-                setAlertMessage('');
-            }, 3000);
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Registration successfully!",
+                showConfirmButton: false,
+                timer: 1500
+              });
 
         } catch (error) {
             console.log(error);
-            setAlertMessage('Registration failed');
-            setTimeout(() => {
-                setAlertMessage('');
-            }, 3000);
+          // handleError(error)
         }
     };
+    const handleError = (error) => {
+        if (axios.isAxiosError(error)) {
+          if (error.response) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `Error: ${error.response.data}. Status: ${error.response.status}`,
+            });
+          }
+        } else {
+          // Algo pasó fuera de Axios
+          alert(`Error: ${error}`);
+        }
+      };
 
     return (
-        <main className="container mx-auto flex items-center justify-center">
+        <main className="container mx-auto flex items-center min-h-screen justify-center lg:min-h-screen">
             <div className="w-full md:w-[68vw] lg:w-full flex flex-col md:flex-row items-center justify-center">
             <img src="/public/assets/img/glacier.jpg" className='hidden md:block md:w-[400px]  md:h-[500px] lg:w-[60%] md:ml-[200px] lg:mt-[4.5%] rounded-xl shadow-[3px_5px_42px_0px_#234e52]' alt="" />
-
 
                 <section className="flex flex-col md:ml-[200px] lg:mt-[4.5%] w-full md:absolute md:w-[50%] lg:w-[400px]">
                     <form onSubmit={handleSubmit} className="flex flex-col text-teal-50 gap-1 w-[80%] lg:text p-5 ml-10 bg-[#000000d5] rounded-xl shadow-[3px_5px_42px_0px_#234e52]">

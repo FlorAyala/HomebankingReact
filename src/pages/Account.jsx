@@ -3,12 +3,15 @@ import Card from '../components/Card';
 import Carrusel from '../components/Carrusel';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2'
 
 const Account = () => {
   const [accounts, setAccounts] = useState([]);
-  const [message, setMessage] = useState('');
+
+  const [loading, setLoading] = useState(true);
   const token = useSelector(store => store.authReducer.token);
   const user = useSelector(store => store.authReducer.user);
+
 
   const getData = async () => {
     try {
@@ -21,6 +24,7 @@ const Account = () => {
     } catch (error) {
       handleError(error);
     }
+    setLoading(false);
   };
 
   const createAccount = async () => {
@@ -31,8 +35,14 @@ const Account = () => {
         }
       });
 
-      
 
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Account created!",
+        showConfirmButton: false,
+        timer: 1500
+      });
       getData();
     } catch (error) {
       handleError(error);
@@ -42,14 +52,11 @@ const Account = () => {
   const handleError = (error) => {
     if (axios.isAxiosError(error)) {
       if (error.response) {
-        // El servidor respondió con un estado diferente a 2xx
-        alert(`Error: ${error.response.data}. Status: ${error.response.status}`);
-      } else if (error.request) {
-        // La petición fue hecha pero no se recibió respuesta
-        alert('Error: No response received from the server.');
-      } else {
-        // Algo pasó al configurar la petición
-        alert(`Error: ${error.message}`);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `Error: ${error.response.data}. Status: ${error.response.status}`,
+        });
       }
     } else {
       // Algo pasó fuera de Axios
@@ -63,6 +70,7 @@ const Account = () => {
 
   return (
     <main className='w-full p-5 px-2 sm:pl-[300px] flex flex-col justify-evenly h-min-screen gap-5'>
+    
       <div className='flex justify-between flex-col  pt-5'>
         <h2 className='text-white text-center text-2xl md:text-3xl lg:text-4xl'>Welcome {user.name}!</h2>
         <div className="flex justify-center">
@@ -72,7 +80,7 @@ const Account = () => {
             </span>
           </button>
         </div>
-        {message && <p className="mt-5">{message}</p>}
+       
       </div>
 
       {/* CARDS */}
@@ -100,3 +108,4 @@ const Account = () => {
 };
 
 export default Account;
+

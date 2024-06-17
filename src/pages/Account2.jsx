@@ -63,7 +63,7 @@ const Account2 = () => {
   };
 
   return (
-    <main className='bg-[#1a1a1a] w-full p-5 flex flex-col justify-evenly h-screen items-center'>
+    <main className='w-full p-5 flex flex-col justify-evenly h-screen items-center'>
       <AccountList accounts={accounts} id={id} />
     </main>
   );
