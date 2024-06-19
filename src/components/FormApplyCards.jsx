@@ -33,12 +33,12 @@ function FormApplyCards(props) {
 
   const handleCardTypeChange = (event) => {
     setSelectedCardType(event.target.value);
-    console.log(event.target.value);
+   // console.log(event.target.value);
   };
 
   const handleMembershipChange = (event) => {
     setSelectedCardColor(event.target.value);
-    console.log(event.target.value);
+   // console.log(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -55,7 +55,7 @@ function FormApplyCards(props) {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
+     // console.log(response.data);
       setSelectedCardType('');
       setSelectedCardColor('');
       

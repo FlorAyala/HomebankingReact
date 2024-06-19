@@ -24,20 +24,20 @@ const Account2 = () => {
         }
       });
       setAccounts(response.data);
-      console.log(response.data);
+     
     } catch (error) {
       console.log(error);
     }
   };
 
   const AccountList = ({ accounts, id }) => {
-    console.log(accounts, id);
+ 
 
     const filteredAccounts = accounts && accounts.filter((account) => account.id.toString() === id);
-    console.log(filteredAccounts);
+    
 
     return (
-      <section className='flex flex-row items-center pt-10 pl-[300px] gap-3 justify-center'>
+      <section className='flex flex-col md:ml-[300px]  lg:ml-20  mt-10 lg:flex-row items-center  lg:pt-10  gap-3 justify-center'>
         {filteredAccounts && filteredAccounts.length > 0 ? (
           filteredAccounts.map((account, index) => (
             <React.Fragment key={index}>
@@ -49,8 +49,8 @@ const Account2 = () => {
                 className="mobile:first:mt-5"
                 showButton={false}
               />
-              <div className='flex flex-col gap-4'>
-                <h3 className='text-[#d0ad50] text-lg'>Transactions Resume:</h3>
+              <div className='flex w-[300px] lg:w-[550px] flex-col gap-4'>
+                <h3 className='text-[#d0ad50]  text-lg'>Transactions Resume:</h3>
                 <Tabla transactions={account.transaction} />
               </div>
             </React.Fragment>
@@ -63,7 +63,7 @@ const Account2 = () => {
   };
 
   return (
-    <main className='w-full p-5 flex flex-col justify-evenly h-screen items-center'>
+    <main className='w-full  lg:p-5 flex flex-col justify-evenly  items-center'>
       <AccountList accounts={accounts} id={id} />
     </main>
   );

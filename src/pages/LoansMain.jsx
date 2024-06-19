@@ -17,7 +17,7 @@ const LoansMain = () => {
         },
       });
       setClient(response.data.loans);
-      console.log(response.data.loans);
+     
     } catch (error) {
       console.log(error);
     }

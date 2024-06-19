@@ -14,6 +14,7 @@ import Account2 from './pages/Account2'
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AuthRoute from './HOCs/AuthRoute';
+import Contact from './pages/Contact';
 
 
 const routesAuth = [
@@ -76,6 +77,11 @@ const routesAll = [
   path: '/',
   element: <Home />,
   key: 'home',
+},
+{
+  path: '/contact',
+  element: <Contact />,
+  key: 'contact',
 }
 ]
 

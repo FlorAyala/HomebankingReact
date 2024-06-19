@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../redux/actions/authActions";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import ButtonHome from '../components/ButtonHome';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,19 @@ const Header = () => {
           </svg>
         </button>
         <nav className={`${isOpen ? 'block' : 'hidden'} flex flex-col gap-3 items-center overflow-y-auto md:flex md:flex-col md:justify-center md:gap-4 lg:flex-col lg:gap-2 flex-grow`}>
-          {!login && <Anchor text="Home" href="/" />}
+          {!login && (
+            <>
+              <Anchor text="Home" href="/" />
+              <Anchor text="Contact" href="/contact" />
+            </>
+          )}
+          {!login &&
+          <div className="flex flex-col items-center  justify-center mt-10 gap-4  w-full">
+            <ButtonHome href="/login" text="Sign In" />
+            <ButtonHome href="/register" text="Sign Up" />
+          </div>
+
+          }
           {login && (
             <>
               <Anchor text="Accounts" href="/account" />

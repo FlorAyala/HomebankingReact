@@ -19,7 +19,7 @@ const CardsMain = () => {
         }
       })
       setCards(response.data);
-      console.log(response.data);
+      
       
       
     } catch (error) {
@@ -56,11 +56,11 @@ const CardsMain = () => {
  
 
   return (
-    <div className="flex flex-col h-full min-h-screen min-w-full items-center justify-center lg:pl-[15rem] ">
+    <div className="flex flex-col h-full min-h-screen min-w-full items-center justify-center lg:pl-[15rem] md:pl-[15rem]">
 
       <div className='flex flex-col items-center justify-center lg:mb-10'>
         <div className='p-5'>
-          <h2 className={`text-[#d0ad50] text-3xl pt-10  lg:text-5xl lg:mb-20 `}>Your Cards</h2>
+          <h2 className={`text-[#d0ad50] text-3xl pt-10  lg:text-5xl  `}>Your Cards</h2>
         </div>
       </div>
 
@@ -99,4 +99,3 @@ const CardsMain = () => {
 }
 
 export default CardsMain;
-

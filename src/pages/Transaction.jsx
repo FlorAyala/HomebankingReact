@@ -28,7 +28,7 @@ const Transaction = () => {
         },
       });
       setClientAccounts(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       handleError(error);
     }
@@ -85,14 +85,14 @@ const Transaction = () => {
  
 
   return (
-    <main className='w-full p-5 lg:pl-[15rem] flex flex-col justify-evenly h-screen  items-center'>
+    <main className='w-full pt-10 p-5 lg:pl-[15rem] flex flex-col md:pl-[254px;] justify-evenly md:h-screen items-center'>
       <h2 className='text-[#d0ad50] text-3xl lg:text-5xl '>Make a transaction</h2>
      
       <div className='flex flex-col md:flex-row lg:flex-row justify-between items-center rounded-xl py-5 '>
         <div>
           <div className='flex flex-col items-center justify-center dark'>
-            <div className='w-full max-w-md bg-gray-800 rounded-lg shadow-md p-6'>
-              <form className='flex flex-col' onSubmit={handleSubmit}>
+            <div className='w-full max-w-md bg-gray-800 rounded-l-xl shadow-md p-6'>
+              <form className='flex flex-col ' onSubmit={handleSubmit}>
             
                 <select
                   className='bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150'
@@ -151,8 +151,8 @@ const Transaction = () => {
             </div>
           </div>
         </div>
-
-        <img className='w-[269px] h-[294px] ml-5' src='/public/assets/img/transacciones.png' alt='img-logo'></img>
+                    
+        <img className=' md:w-[240px] md:h-[327px] rounded-lg md:rounded-r-xl lg:rounded-r-xl lg:w-[428px] lg:h-[327px]' src='/public/assets/img/transacciones.jfif' alt='img-logo'></img>
       </div>
     </main>
   );

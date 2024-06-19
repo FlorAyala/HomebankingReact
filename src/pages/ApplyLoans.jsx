@@ -85,13 +85,13 @@ const ApplyLoans = () => {
     const selectedLoanName = e.target.value;
 
     const selectedLoanId = loan.find((loan) => loan.name === selectedLoanName);
-    console.log(selectedLoanName);
+   
     setselectedLoanName(selectedLoanName);
 
     if (selectedLoanId) {
 
       setLoanId(selectedLoanId.id);
-      console.log(selectedLoanId.id);
+      
     } else {
       console.log(`couldn't find loan with name '${selectedLoanId}'.`);
     }
@@ -102,7 +102,7 @@ const ApplyLoans = () => {
       const selectedLoan = loan.find((loan) => loan.name === selectedLoanName);
       if (selectedLoan) {
         setPayments(selectedLoan.payments);
-        console.log(selectedLoan.payments);
+       
       }
       
     }
