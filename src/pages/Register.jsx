@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
@@ -13,6 +13,7 @@ const Register = () => {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(true);
 
 
   const handleSubmit = async (event) => {
@@ -40,8 +41,9 @@ const Register = () => {
 
     } catch (error) {
       console.log(error);
-      // handleError(error)
+       handleError(error)
     }
+    setLoading(false);
   };
   const handleError = (error) => {
     if (axios.isAxiosError(error)) {
@@ -58,8 +60,23 @@ const Register = () => {
     }
   };
 
+  useEffect(() => {
+    // Simulate loading time
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust the time as needed
+  }, []); 
+
   return (
     <main className="container mx-auto flex items-center min-h-screen justify-center lg:min-h-screen">
+      {loading ? (
+        <div className='flex items-center justify-center w-full h-screen'>
+          <div className='p-3 animate-spin drop-shadow-2xl bg-gradient-to-bl from-pink-400 via-purple-400 to-indigo-600 md:w-48 md:h-48 h-32 w-32 aspect-square rounded-full'>
+            <div className='rounded-full h-full w-full bg-slate-100 dark:bg-zinc-900 background-blur-md'></div>
+          </div>
+        </div>
+      ) : (
+        <>
       <div className="w-full md:w-[68vw] lg:w-full flex flex-col md:flex-row items-center justify-center">
         <img src="/public/assets/img/glacier.jpg" className='hidden md:block md:w-[400px]  md:h-[500px] lg:w-[60%] md:ml-[200px] lg:mt-[4.5%] rounded-xl shadow-[3px_5px_42px_0px_#234e52]' alt="" />
 
@@ -81,6 +98,8 @@ const Register = () => {
           </form>
         </section>
       </div>
+      </>
+      )}
     </main>
   );
 };

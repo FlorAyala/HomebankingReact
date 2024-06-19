@@ -13,7 +13,7 @@ const Transaction = () => {
   const [description, setDescription] = useState('');
   const [selectedSourceAccount, setSelectedSourceAccount] = useState('');
   const [destinationAccount, setDestinationAccount] = useState('');// 'own' or 'thirdParty
-
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -32,6 +32,7 @@ const Transaction = () => {
     } catch (error) {
       handleError(error);
     }
+    setLoading(false);
   };
 
   const handleSubmit = async (event) => {
@@ -82,10 +83,25 @@ const Transaction = () => {
       alert(`Error: ${error}`);
     }
   };
+
+  useEffect(() => {
+    // Simulate loading time
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust the time as needed
+  }, []); 
  
 
   return (
     <main className='w-full pt-10 p-5 lg:pl-[15rem] flex flex-col md:pl-[254px;] justify-evenly md:h-screen items-center'>
+      {loading ? (
+        <div className='flex items-center justify-center w-full h-screen'>
+          <div className='p-3 animate-spin drop-shadow-2xl bg-gradient-to-bl from-pink-400 via-purple-400 to-indigo-600 md:w-48 md:h-48 h-32 w-32 aspect-square rounded-full'>
+            <div className='rounded-full h-full w-full bg-slate-100 dark:bg-zinc-900 background-blur-md'></div>
+          </div>
+        </div>
+      ) : (
+        <>
       <h2 className='text-[#d0ad50] text-3xl lg:text-5xl '>Make a transaction</h2>
      
       <div className='flex flex-col md:flex-row lg:flex-row justify-between items-center rounded-xl py-5 '>
@@ -154,6 +170,8 @@ const Transaction = () => {
                     
         <img className=' md:w-[240px] md:h-[327px] rounded-lg md:rounded-r-xl lg:rounded-r-xl lg:w-[428px] lg:h-[327px]' src='/public/assets/img/transacciones.jfif' alt='img-logo'></img>
       </div>
+      </>
+      )}
     </main>
   );
 };

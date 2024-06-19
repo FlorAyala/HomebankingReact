@@ -37,7 +37,7 @@ const Account2 = () => {
     
 
     return (
-      <section className='flex flex-col md:ml-[300px]  lg:ml-20  mt-10 lg:flex-row items-center  lg:pt-10  gap-3 justify-center'>
+      <section className='flex flex-col md:ml-[300px] lg:min-h-screen lg:ml-20  mt-10 lg:flex-row items-center   gap-3 justify-center'>
         {filteredAccounts && filteredAccounts.length > 0 ? (
           filteredAccounts.map((account, index) => (
             <React.Fragment key={index}>

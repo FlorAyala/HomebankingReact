@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import InputsForm from '../components/InputsForm';
@@ -10,6 +10,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const inputEmail = useRef(null);
   const inputPassword = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,6 +42,7 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
   function verifyEmail(email) {
@@ -51,7 +53,24 @@ const Login = () => {
       );
   }
 
-  return (<main className="container mx-auto flex items-center min-h-screen justify-center lg:min-h-screen">
+  useEffect(() => {
+    // Simulate loading time
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust the time as needed
+  }, []); 
+
+  return (
+  <main className="container mx-auto flex items-center min-h-screen justify-center lg:min-h-screen">
+     {loading ? (
+        <div className='flex items-center justify-center w-full h-screen'>
+          <div className='p-3 animate-spin drop-shadow-2xl bg-gradient-to-bl from-pink-400 via-purple-400 to-indigo-600 md:w-48 md:h-48 h-32 w-32 aspect-square rounded-full'>
+            <div className='rounded-full h-full w-full bg-slate-100 dark:bg-zinc-900 background-blur-md'></div>
+          </div>
+        </div>
+      ) : (
+        <>
+       
     <div className="w-full md:w-[68vw] lg:w-full flex flex-col md:flex-row items-center justify-center">
       <img src="/public/assets/img/glacier.jpg" className='hidden md:block md:w-[400px]  md:h-[500px] lg:w-[60%] md:ml-[200px] lg:mt-[4.5%] rounded-xl shadow-[3px_5px_42px_0px_#234e52]' alt="" />
 
@@ -79,6 +98,8 @@ const Login = () => {
         </form>
       </section>
     </div>
+    </>
+  )}
   </main>
 
   );

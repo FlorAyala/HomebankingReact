@@ -4,12 +4,13 @@ import InputsForm from '../components/InputsForm';
 import ButtonsForms from '../components/ButtonsForms';
 import ButtonHome from '../components/ButtonHome';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí podrías manejar la lógica de enviar el formulario (por ejemplo, usando una API)
-    alert('Formulario enviado');
+  
+    Swal.fire("Form submitted successfully!");
   };
 
   return (
@@ -31,14 +32,14 @@ const Contact = () => {
               <p>Email: info@glaciernetbank.com</p>
             </div>
             <div className="p-4 bg-gray-100 rounded-lg">
-              <h3 className="text-lg font-semibold mb-2">Centro de Atención al Cliente</h3>
+              <h3 className="text-lg font-semibold mb-2">Customer care Center</h3>
               <p>Phone: (987) 654-3210</p>
               <p>Email: support@glaciernetbank.com</p>
             </div>
           </div>
         </section>
         <section>
-          <h2 className="text-2xl font-bold mb-4">Envíanos un Mensaje</h2>
+          <h2 className="text-2xl font-bold mb-4">Send us a message</h2>
           <form onSubmit={handleSubmit} className="flex flex-col text-teal-50 text-left gap-1 w-[80%] lg:text p-5 ml-10 bg-[#000000d5] rounded-xl shadow-[3px_5px_42px_0px_#234e52]">
             
             <label htmlFor="name" className="block text-sm font-medium text-white ">

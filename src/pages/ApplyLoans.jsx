@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 const ApplyLoans = () => {
   const token = useSelector((store) => store.authReducer.token);
   const [loan, setLoan] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const [clientAccounts, setClientAccounts] = useState([]);
   const [amount, setAmount] = useState('');
   const [installments, setInstallments] = useState('');
@@ -32,6 +32,7 @@ const ApplyLoans = () => {
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
   const getAccounts = async () => {
@@ -123,8 +124,23 @@ const ApplyLoans = () => {
     }
   };
 
+  useEffect(() => {
+    // Simulate loading time
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust the time as needed
+  }, []); 
+
   return (
     <main className='w-full p-5 lg:pl-[15rem] md:ml-[12rem] flex flex-col justify-evenly h-screen items-center'>
+      {loading ? (
+        <div className='flex items-center justify-center w-full h-screen'>
+          <div className='p-3 animate-spin drop-shadow-2xl bg-gradient-to-bl from-pink-400 via-purple-400 to-indigo-600 md:w-48 md:h-48 h-32 w-32 aspect-square rounded-full'>
+            <div className='rounded-full h-full w-full bg-slate-100 dark:bg-zinc-900 background-blur-md'></div>
+          </div>
+        </div>
+      ) : (
+        <>
       <h2 className='text-[#d0ad50] text-5xl'>Apply for a loan</h2>
       <section className='flex flex-row lg:mt-16 items-center lg:w-[67.666667%] md:w-[70%]  bg-transparent'>
         <form onSubmit={handleSubmit} className='flex flex-col gap-4 w-[350px] p-5 bg-[#3a35357a] border-r-[1px_solid_#d3ad45] rounded-l-xl shadow-[3px_5px_42px_0px_#234e52]'>
@@ -202,7 +218,8 @@ const ApplyLoans = () => {
           <img className='h-[408px] rounded-r-xl' src='/public/assets/img/loan2.jpg' alt='img-logo' />
         </div>
       </section>
-      <section></section>
+      </>
+      )}
     </main>
   );
 };

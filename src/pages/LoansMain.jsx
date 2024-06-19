@@ -8,6 +8,7 @@ import axios from 'axios';
 const LoansMain = () => {
   const [client, setClient] = useState([]);
   const token = useSelector(store => store.authReducer.token)
+  const [loading, setLoading] = useState(true);
 
   const getData = async () => {
     try {
@@ -21,15 +22,32 @@ const LoansMain = () => {
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   }
 
   useEffect(() => {
     getData();
   }, [token])
 
+  useEffect(() => {
+    // Simulate loading time
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust the time as needed
+  }, []); 
+
   
   return (
     <main className=' w-full lg:p-5 lg:pl-[20rem]  lg:m-0 lg:h-screen lg:ml-[1rem] md:ml-[15rem] flex flex-col justify-evenly mt-10 gap-7 h-min-screen items-center"'>
+      {loading ? (
+        <div className='flex items-center justify-center w-full h-screen'>
+          <div className='p-3 animate-spin drop-shadow-2xl bg-gradient-to-bl from-pink-400 via-purple-400 to-indigo-600 md:w-48 md:h-48 h-32 w-32 aspect-square rounded-full'>
+            <div className='rounded-full h-full w-full bg-slate-100 dark:bg-zinc-900 background-blur-md'></div>
+          </div>
+        </div>
+      ) : (
+        <> 
+        
       <h2 className='text-[#d0ad50] text-3xl text-center lg:text-5xl '>Your Loans</h2>
       <div className='flex flex-wrap md:flex-row  gap-2 md:gap-3 justify-center w-full'> 
         {client && client.length > 0 ? (
@@ -52,7 +70,11 @@ const LoansMain = () => {
         </Link>
 
       </div>
+      </>
+      )}
     </main>
   )
 }
 export default LoansMain
+
+

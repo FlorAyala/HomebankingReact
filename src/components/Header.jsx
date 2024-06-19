@@ -27,9 +27,10 @@ const Header = () => {
         <img className="hidden sm:block sm:w-[10px] md:w-[100px] lg:w-[180px] md:mx-auto lg:mx-0" src="/public/assets/img/logo-bank.png" alt="img-logo" />
         <button
           className="md:hidden text-white focus:outline-none"
-          onClick={toggleMenu}        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+          onClick={toggleMenu}    
+          data-tooltip-target="tooltip-default"    >
+          <svg className="w-6 h-6"  id="tooltip-default" role="tooltip" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+            <path class="tooltip-arrow" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
         </button>
         <nav className={`${isOpen ? 'block' : 'hidden'} flex flex-col gap-3 items-center overflow-y-auto md:flex md:flex-col md:justify-center md:gap-4 lg:flex-col lg:gap-2 flex-grow`}>

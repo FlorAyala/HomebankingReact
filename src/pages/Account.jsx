@@ -68,43 +68,56 @@ const Account = () => {
     getData();
   }, [token]);
 
+  useEffect(() => {
+    // Simulate loading time
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust the time as needed
+  }, []); 
+
   return (
     <main className='w-full p-5 px-2 sm:pl-[300px] flex flex-col justify-evenly h-min-screen gap-5'>
-    
-      <div className='flex justify-between flex-col  pt-5'>
-        <h2 className='text-white text-center text-2xl md:text-3xl lg:text-5xl'>Welcome {user.name}!</h2>
-        <div className="flex justify-center">
-          <button onClick={createAccount} className="relative w-[40%] mt-2 lg:w-[20%] md:mt-10 lg:mt-10 inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-[#f5e3b3] to-[#af954c] group-hover:from-[#4d9120] group-hover:to-[#e6c05a] dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
-            <span className="relative px-5 py-2.5 transition-all ease-in duration-75  dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-              Add Account
-            </span>
-          </button>
+      {loading ? (
+        <div className='flex items-center justify-center w-full h-screen'>
+          <div className='p-3 animate-spin drop-shadow-2xl bg-gradient-to-bl from-pink-400 via-purple-400 to-indigo-600 md:w-48 md:h-48 h-32 w-32 aspect-square rounded-full'>
+            <div className='rounded-full h-full w-full bg-slate-100 dark:bg-zinc-900 background-blur-md'></div>
+          </div>
         </div>
-       
-      </div>
+      ) : (
+        <>
+          <div className='flex justify-between flex-col pt-5'>
+            <h2 className='text-white text-center text-2xl md:text-3xl lg:text-5xl'>Welcome {user.name}!</h2>
+            <div className="flex justify-center">
+              <button onClick={createAccount} className="relative w-[40%] mt-2 lg:w-[20%] md:mt-10 lg:mt-10 inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-[#f5e3b3] to-[#af954c] group-hover:from-[#4d9120] group-hover:to-[#e6c05a] dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
+                <span className="relative px-5 py-2.5 transition-all ease-in duration-75 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                  Add Account
+                </span>
+              </button>
+            </div>
+          </div>
 
-      {/* CARDS */}
-      <div className='flex flex-col gap-5 sm:flex-row sm:flex-wrap sm:justify-center'>
-        {accounts && accounts.length > 0 ? (
-          accounts.map((account, index) => (
-            <Card
-              key={index}
-              id={account.id}
-              textoNumber={`Number account: ${account.number}`}
-              textoAmount={`Amount: $${account.balance}`}
-              textoDate={`Creation date: ${account.creationDate}`}
-              className="sm:w-80 sm:first:mt-5"
-              showButton={true}
-            />
-          ))
-        ) : (
-          <p className="mt-5">No accounts found</p>
-        )}
-      </div>
-      
-        
-      <Carrusel className="mt-5 " />
-      
+          {/* CARDS */}
+          <div className='flex flex-col gap-5 sm:flex-row sm:flex-wrap sm:justify-center'>
+            {accounts && accounts.length > 0 ? (
+              accounts.map((account, index) => (
+                <Card
+                  key={index}
+                  id={account.id}
+                  textoNumber={`Number account: ${account.number}`}
+                  textoAmount={`Amount: $${account.balance}`}
+                  textoDate={`Creation date: ${account.creationDate}`}
+                  className="sm:w-80 sm:first:mt-5"
+                  showButton={true}
+                />
+              ))
+            ) : (
+              <p className="mt-5">No accounts found</p>
+            )}
+          </div>
+
+          <Carrusel className="mt-5" />
+        </>
+      )}
     </main>
   );
 };
