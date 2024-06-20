@@ -22,7 +22,7 @@ const Transaction = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/clients/current/accounts', {
+      const response = await axios.get('https://homebanking-akst.onrender.com/api/clients/current/accounts', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +48,7 @@ const Transaction = () => {
 
 
     try {
-      const response = await axios.post('http://localhost:8080/api/transactions', createTransaction, {
+      const response = await axios.post('https://homebanking-akst.onrender.com/api/transactions', createTransaction, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -157,9 +157,15 @@ const Transaction = () => {
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
 
-                <button
+                  
+                <button        //REVISAR 
                   className='w-full justify-center py-1 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 rounded-md text-white ring-2'
                   type='submit'
+                  onClick={() => {
+                    if (window.confirm('Are you sure you want to transfer the money?')) {
+                      handleSubmit();
+                    }
+                  }}
                 >
                   Transfer
                 </button>

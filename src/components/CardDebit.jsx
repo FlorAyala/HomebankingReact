@@ -14,7 +14,7 @@ export const CardDebit = () => {
 
   const getData = async () => {
       try {
-          const response = await axios.get('http://localhost:8080/api/clients/current/cards', {
+          const response = await axios.get('https://homebanking-akst.onrender.com/api/clients/current/cards', {
               headers: {
                   Authorization: `Bearer ${token}`
               }

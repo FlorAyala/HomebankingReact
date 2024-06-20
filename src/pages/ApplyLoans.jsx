@@ -22,7 +22,7 @@ const ApplyLoans = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/loans', {
+      const response = await axios.get('https://homebanking-akst.onrender.com/api/loans', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -37,7 +37,7 @@ const ApplyLoans = () => {
 
   const getAccounts = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/clients/current/accounts', {
+      const response = await axios.get('https://homebanking-akst.onrender.com/api/clients/current/accounts', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -62,7 +62,7 @@ const ApplyLoans = () => {
     console.log(createLoans);
 
     try {
-      const response = await axios.post('http://localhost:8080/api/loans', createLoans, {
+      const response = await axios.post('https://homebanking-akst.onrender.com/api/loans', createLoans, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

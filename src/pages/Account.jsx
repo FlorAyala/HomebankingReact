@@ -15,7 +15,7 @@ const Account = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/clients/current/accounts', {
+      const response = await axios.get('https://homebanking-akst.onrender.com/api/clients/current/accounts', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -29,7 +29,7 @@ const Account = () => {
 
   const createAccount = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/api/clients/current/accounts', {}, {
+      const response = await axios.post('https://homebanking-akst.onrender.com/api/clients/current/accounts', {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }

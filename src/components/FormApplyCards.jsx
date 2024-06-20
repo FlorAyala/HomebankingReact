@@ -19,7 +19,7 @@ function FormApplyCards(props) {
 
   const getData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/clients/current/cards', {
+      const response = await axios.get('https://homebanking-akst.onrender.com/api/clients/current/cards', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,7 +50,7 @@ function FormApplyCards(props) {
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/api/clients/current/cards', createdCard, {
+      const response = await axios.post('https://homebanking-akst.onrender.com/api/clients/current/cards', createdCard, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -25,7 +25,7 @@ const Header = () => {
     <>
       <header className="bg-[#000000]  h-auto h-min-screen  w-full md:h-[100vh] md:w-[250px] lg:w-[250px] lg:h-[100vh] fixed top-0 left-0 md:flex md:flex-col md:items-center lg:flex lg:flex-col lg:items-center  z-50">
         <img className="hidden sm:block sm:w-[10px] md:w-[100px] lg:w-[180px] md:mx-auto lg:mx-0" src="/public/assets/img/logo-bank.png" alt="img-logo" />
-        <button
+        <button //agregarle un alert para preguntar si desea salir de su cuenta
           className="md:hidden text-white focus:outline-none"
           onClick={toggleMenu}    
           data-tooltip-target="tooltip-default"    >

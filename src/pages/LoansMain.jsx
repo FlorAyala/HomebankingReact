@@ -12,7 +12,7 @@ const LoansMain = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/auth/current', {
+      const response = await axios.get('https://homebanking-akst.onrender.com/api/auth/current', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -27,7 +27,7 @@ const Register = () => {
     };
 
     try {
-      let response = await axios.post('http://localhost:8080/api/auth/signup', user);
+      let response = await axios.post('https://homebanking-akst.onrender.com/api/auth/signup', user);
 
       //console.log(response.data);
 

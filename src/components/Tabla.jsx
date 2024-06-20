@@ -13,13 +13,13 @@ const Tabla = ({ transactions }) => {
         </Table.Head>
         <Table.Body className="divide-y">
           {transactions && transactions.length > 0 ? (
-            transactions.map((transaction, idx) => (
+            transactions.sort((a,b) => (a.id- b.id)).map((transaction, idx) => (
               <Table.Row key={idx} className="bg-gradient-to-r from-blue-400 to-blue-500 dark:border-gray-700 dark:bg-gray-800 text-black">
                 <Table.Cell className="whitespace-nowrap font-medium  dark:text-white">
                   {transaction.type}
                 </Table.Cell>
                 <Table.Cell>${transaction.amount}</Table.Cell>
-                <Table.Cell>{transaction.date}</Table.Cell>
+                <Table.Cell>{new Date(transaction.date).toLocaleDateString("es-ES")}</Table.Cell>
                 <Table.Cell>{transaction.description}</Table.Cell>
               </Table.Row>
             ))
