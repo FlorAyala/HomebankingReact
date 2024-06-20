@@ -174,7 +174,7 @@ const Transaction = () => {
           </div>
         </div>
                     
-        <img className=' md:w-[240px] md:h-[327px] rounded-lg md:rounded-r-xl lg:rounded-r-xl lg:w-[428px] lg:h-[327px]' src='/public/assets/img/transacciones.jfif' alt='img-logo'></img>
+        <img className=' md:w-[240px] md:h-[327px] rounded-lg md:rounded-r-xl lg:rounded-r-xl lg:w-[428px] lg:h-[327px]' src='/assets/img/transacciones.jfif' alt='img-logo'></img>
       </div>
       </>
       )}

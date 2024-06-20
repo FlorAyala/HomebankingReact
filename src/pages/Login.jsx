@@ -72,7 +72,7 @@ const Login = () => {
         <>
        
     <div className="w-full md:w-[68vw] lg:w-full flex flex-col md:flex-row items-center justify-center">
-      <img src="/public/assets/img/glacier.jpg" className='hidden md:block md:w-[400px]  md:h-[500px] lg:w-[60%] md:ml-[200px] lg:mt-[4.5%] rounded-xl shadow-[3px_5px_42px_0px_#234e52]' alt="" />
+      <img src="/assets/img/glacier.jpg" className='hidden md:block md:w-[400px]  md:h-[500px] lg:w-[60%] md:ml-[200px] lg:mt-[4.5%] rounded-xl shadow-[3px_5px_42px_0px_#234e52]' alt="" />
 
       <section className="flex flex-col md:ml-[200px] lg:mt-[4.5%] w-full md:absolute md:w-[50%] lg:w-[400px]">
         <form onSubmit={handleSubmit} className="flex flex-col text-teal-50 gap-1 w-[80%] lg:text p-5 ml-10 bg-[#000000d5] rounded-xl shadow-[3px_5px_42px_0px_#234e52]">

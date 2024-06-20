@@ -215,7 +215,7 @@ const ApplyLoans = () => {
         </form>
 
         <div>
-          <img className='h-[408px] rounded-r-xl' src='/public/assets/img/loan2.jpg' alt='img-logo' />
+          <img className='h-[408px] rounded-r-xl' src='/assets/img/loan2.jpg' alt='img-logo' />
         </div>
       </section>
       </>

@@ -54,7 +54,7 @@ function MainComponent() {
           <FormApplyCards text="Select card type" />
         </div>
         <div>
-          <img className="lg:w-4/5 md:w-[200px]" src="/public/assets/img/img-cards.png" alt="img-logo" />
+          <img className="lg:w-4/5 md:w-[200px]" src="/assets/img/img-cards.png" alt="img-logo" />
         </div>
       </section>
       </>

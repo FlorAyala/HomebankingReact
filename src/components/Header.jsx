@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <>
       <header className="bg-[#000000]  h-auto h-min-screen  w-full md:h-[100vh] md:w-[250px] lg:w-[250px] lg:h-[100vh] fixed top-0 left-0 md:flex md:flex-col md:items-center lg:flex lg:flex-col lg:items-center  z-50">
-        <img className="hidden sm:block sm:w-[10px] md:w-[100px] lg:w-[180px] md:mx-auto lg:mx-0" src="/public/assets/img/logo-bank.png" alt="img-logo" />
+        <img className="hidden sm:block sm:w-[10px] md:w-[100px] lg:w-[180px] md:mx-auto lg:mx-0" src="/assets/img/logo-bank.png" alt="img-logo" />
         <button //agregarle un alert para preguntar si desea salir de su cuenta
           className="md:hidden text-white focus:outline-none"
           onClick={toggleMenu}    
@@ -56,12 +56,12 @@ const Header = () => {
             </>
           )}
           <Link to="/login" onClick={handleLogout} className="m-auto pt-4">
-            {login && <img className="w-[40px]" src="/public/assets/img/logout.png" alt="Logout" />}
+            {login && <img className="w-[40px]" src="/assets/img/logout.png" alt="Logout" />}
           </Link>
           <div className="flex-grow flex mb-2 flex-row justify-end items-center md:w-auto md:flex md:flex-row md:justify-center md:items-center md:gap-2 lg:w-auto lg:flex lg:flex-row lg:justify-center lg:items-center lg:gap-5 lg:mt-[100px]">
-            <AnchorSocial href="https://www.facebook.com/" target="_blank" src="/public/assets/img/facebook-icons.png" />
-            <AnchorSocial href="https://www.instagram.com/" src="/public/assets/img/instagram-icons.png" />
-            <AnchorSocial href="https://www.whatsapp.com/" src="/public/assets/img/whatsapp-icons.png" />
+            <AnchorSocial href="https://www.facebook.com/" target="_blank" src="/assets/img/facebook-icons.png" />
+            <AnchorSocial href="https://www.instagram.com/" src="/assets/img/instagram-icons.png" />
+            <AnchorSocial href="https://www.whatsapp.com/" src="/assets/img/whatsapp-icons.png" />
           </div>
         </nav>
       </header>
